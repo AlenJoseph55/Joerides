@@ -22,8 +22,10 @@ export default function book() {
                     <p>Date and Time</p>
                     </div>
                     <div>
-                        <p>Select number of hours</p>
-                        <button className="h-[50px] w-[35%] sm:w-[50%] lg:w-[100%]  text-black flex justify-center bg-yellow-500 rounded-3xl text-center items-center text-xs sm:text-lg">1h</button>
+                        <p className="m-1">Select number of hours</p>
+                        <button className="h-[50px] w-[35%] sm:w-[50%] lg:w-[150%]  text-black flex justify-center bg-yellow-500 rounded-3xl text-center items-center text-xs sm:text-lg">
+                            1h
+                            </button>
                     </div>
                 </div>
             </div>
