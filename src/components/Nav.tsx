@@ -26,18 +26,17 @@ export default function Nav() {
         </Link>
       </div>
 
-      <div className="items-center space-x-20 hidden sm:flex pl-12 ">
+      <div className={`items-center space-x-20 hidden sm:flex pl-12`}>
         <Link href="/">
-        <h1>Home</h1>
+          <h1>Home</h1>
         </Link>
         <Link href="/cycles">
-        <h1>Available Cycles</h1>
+          <h1>Available Cycles</h1>
         </Link>
         <Link href="/rides">
-        <h1>My Rides</h1>
+          <h1>My Rides</h1>
         </Link>
       </div>
-
 
       <DropdownMenu>
         <DropdownMenuTrigger>
@@ -51,7 +50,7 @@ export default function Nav() {
           </div>
         </DropdownMenuTrigger>
         <DropdownMenuPortal>
-          <DropdownMenuContent className="sm:w-60">
+          <DropdownMenuContent className="sm:w-60 bg-white">
             <DropdownMenuSeparator />
             {links.map(({ name, href }) => (
               <DropdownMenuItem className="flex flex-col p-2" key={name}>
