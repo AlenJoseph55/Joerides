@@ -14,7 +14,7 @@ export default function Home() {
           <div className="flex flex-col justify-center items-center w-screen h-[100%] text-center" id="text">
             <h1 className="text-md sm:text-4xl">Fuel you campus adventures with Joerides!</h1>
             <h2>For MBCCET Students</h2>
-            <Link href="/cycles" className="h-[50px] w-[35%] sm:w-[35%] lg:w-[25%]  text-black flex justify-center m-3 bg-yellow-500 rounded-3xl text-center items-center text-xs sm:text-lg">
+            <Link href="/user/cycles" className="h-[50px] w-[35%] sm:w-[35%] lg:w-[25%]  text-black flex justify-center m-3 bg-yellow-500 rounded-3xl text-center items-center text-xs sm:text-lg">
             <div ><p className="p-2">BOOK YOUR RIDE NOW</p></div>
             </Link>
           </div>

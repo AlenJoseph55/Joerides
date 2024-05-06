@@ -38,3 +38,13 @@
   button[data-state="active"] {
     background-color: rgb(234 179 8 ) !important;
   }
+
+  #alert {
+    z-index: 1;
+  }
+
+  #ride{
+    background-image: url("../assets/cycles.png");
+    background-size: cover;
+    background-position: center;
+  }

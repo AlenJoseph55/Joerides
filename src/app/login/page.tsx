@@ -1,9 +1,9 @@
+"use client"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
 import {
     Card,
     CardContent,
-    CardDescription,
     CardFooter,
     CardHeader,
     CardTitle,
@@ -11,8 +11,22 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import Nav from "../../components/Nav1"
+import axios from "axios";
+import { useForm } from 'react-hook-form';
 
 export default function login() {
+
+    const { register, handleSubmit } = useForm();
+
+    const onSubmit = async(data: any) => {
+        try {
+            const response = await axios.post(`http://localhost:3001/api/v1/signup`, data);
+            console.log(response);
+        }catch (error) {
+       console.error(error);
+        }
+    };
+
     return (
         <div className="h-screen">
             <div>
@@ -28,20 +42,15 @@ export default function login() {
                         <Card className="rounded-xl">
                             <CardHeader>
                                 <CardTitle>Login</CardTitle>
-                                {/* <CardDescription>
-                                    Make changes to your account here. Click save when you're done.
-                                </CardDescription> */}
                             </CardHeader>
                             <CardContent className="space-y-2">
                                 <div className="space-y-1">
                                     <Label htmlFor="name">Email</Label>
                                     <Input id="name" />
-                                    {/* defaultValue="Pedro Duarte" */}
                                 </div>
                                 <div className="space-y-1">
                                     <Label htmlFor="username">Password</Label>
                                     <Input id="username" type="password"/>
-                                    {/* defaultValue="@peduarte"  */}
                                 </div>
                             </CardContent>
                             <CardFooter>
@@ -53,22 +62,19 @@ export default function login() {
                         <Card  className="rounded-xl">
                             <CardHeader>
                                 <CardTitle>Signup</CardTitle>
-                                {/* <CardDescription>
-                                    Change your password here. After saving, you'll be logged out.
-                                </CardDescription> */}
                             </CardHeader>
                             <CardContent className="space-y-2">
                                 <div className="space-y-1">
-                                    <Label htmlFor="current">Email</Label>
-                                    <Input id="current" type="email" />
+                                <Label htmlFor="current">Name</Label>
+                                    <Input id="current" {...register("name",{required: true})}/>
                                 </div>
-                                {/* <div className="space-y-1">
-                                    <Label htmlFor="new">New password</Label>
-                                    <Input id="new" type="password" />
-                                </div> */}
+                                <div className="space-y-1">
+                                    <Label htmlFor="current">Email</Label>
+                                    <Input id="current" type="email" {...register("email", {required: true})}/>
+                                </div>
                             </CardContent>
                             <CardFooter>
-                                <Button className="bg-yellow-500 rounded-3xl">Submit</Button>
+                                <Button type="submit" className="bg-yellow-500 rounded-3xl" onClick={handleSubmit(onSubmit)} >Submit</Button>
                             </CardFooter>
                         </Card>
                     </TabsContent>

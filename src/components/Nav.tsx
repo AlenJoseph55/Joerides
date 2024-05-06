@@ -9,13 +9,13 @@ import Link from 'next/link';
 export default function Nav() {
   const [iconRotation, setIconRotation] = useState(0);
   const links = [
-    { name: "Profile", href: '/profile' },
-    { name: "Past Rides", href: "/pastrides" },
-    { name: "Current Ride", href: "/currentride" },
-    { name: "Payments", href: "/payments" },
-    { name: "Help", href: "/help" },
-    { name: "Settings", href: "/settngs" },
-    { name: "Logout", href: "/logout" },
+    { name: "Profile", href: '/user/profile' },
+    { name: "Past Rides", href: "/user/pastrides" },
+    { name: "Current Ride", href: "/user/currentride" },
+    { name: "Payments", href: "/user/payments" },
+    { name: "Help", href: "/user/help" },
+    { name: "Settings", href: "/user/settngs" },
+    { name: "Logout", href: "/user/logout" },
 
   ];
   return (
@@ -30,10 +30,10 @@ export default function Nav() {
         <Link href="/">
           <h1>Home</h1>
         </Link>
-        <Link href="/cycles">
+        <Link href="/user/cycles">
           <h1>Available Cycles</h1>
         </Link>
-        <Link href="/rides">
+        <Link href="/user/rides">
           <h1>My Rides</h1>
         </Link>
       </div>
