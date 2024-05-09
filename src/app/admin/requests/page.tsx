@@ -20,50 +20,7 @@ export default function admin() {
         name: string;
         email: string;
     }
-    const invoices = [
-        {
-            invoice: "INV001",
-            paymentStatus: "Paid",
-            totalAmount: "$250.00",
-            paymentMethod: "Credit Card",
-        },
-        {
-            invoice: "INV002",
-            paymentStatus: "Pending",
-            totalAmount: "$150.00",
-            paymentMethod: "PayPal",
-        },
-        {
-            invoice: "INV003",
-            paymentStatus: "Unpaid",
-            totalAmount: "$350.00",
-            paymentMethod: "Bank Transfer",
-        },
-        {
-            invoice: "INV004",
-            paymentStatus: "Paid",
-            totalAmount: "$450.00",
-            paymentMethod: "Credit Card",
-        },
-        {
-            invoice: "INV005",
-            paymentStatus: "Paid",
-            totalAmount: "$550.00",
-            paymentMethod: "PayPal",
-        },
-        {
-            invoice: "INV006",
-            paymentStatus: "Pending",
-            totalAmount: "$200.00",
-            paymentMethod: "Bank Transfer",
-        },
-        {
-            invoice: "INV007",
-            paymentStatus: "Unpaid",
-            totalAmount: "$300.00",
-            paymentMethod: "Credit Card",
-        },
-    ]
+
 useEffect(() => {
     getUsers();
 },[]);
@@ -82,6 +39,16 @@ useEffect(() => {
 const handleApprove = async (id: number) => {
     try {
         const response = await axios.put(`http://localhost:3001/api/v1/approve/${id}`);
+        console.log(response);
+        getUsers();
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+const handleReject = async (id: number) => {
+    try {
+        const response = await axios.delete(`http://localhost:3001/api/v1/reject/${id}`);
         console.log(response);
         getUsers();
     } catch (error) {
@@ -124,7 +91,7 @@ const handleApprove = async (id: number) => {
                                         </button>
                                     </TableCell>
                                     <TableCell>
-                                        <button className='bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded'>
+                                        <button className='bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded' onClick={async () => await handleReject(user.id)}>
                                             Reject
                                         </button>
                                     </TableCell>
