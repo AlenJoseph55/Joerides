@@ -15,7 +15,7 @@ const corsOptions = {
     optionsSuccessStatus: 204,
   };
 app.use(cors(corsOptions));
-
+app.use('/', express.static("./assets/images"));
 app.use("/api/v1/cycles", require("./routes/cycleroutes"));
 app.use("/api/v1", require("./routes/authroutes"));
 

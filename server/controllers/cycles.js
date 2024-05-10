@@ -1,31 +1,40 @@
 const pool = require("../config/dbconfig");
+const getImageUrl = require("../config/imageLoc");
 
-const getCycles = async(req,res)=>{
+const getCycles = async (req, res) => {
     try {
         const [cycles] = await pool.execute("SELECT * FROM cycles");
         if (cycles.length === 0) {
-          return res.status(200).json({ message: "There are no cycles" });
+            return res.status(200).json({ message: "There are no cycles" });
         }
         return res.status(200).json(cycles);
-      } catch (error) {
+    } catch (error) {
         console.log(error);
         return res.status(500).json({ message: "Internal Server Error" });
-      }
+    }
 }
 
 const createCycles = async (req, res) => {
     const {
         name,
-        image,
         rate
     } = req.body;
+    const image = req.file;
     try {
+        if (!image) {
+            return res.status(400).json({ message: "image is required" });
+          }
+        console.log(req.body);
         const updateFields = [];
         const values = [];
         updateFields.push("`name`");
         values.push(name);
-        updateFields.push("`image`");
-        values.push(image);
+        // if(image){
+            updateFields.push("`image`");
+            const img_name = image.filename;
+            const img_loc = getImageUrl(req, img_name);
+            values.push(img_loc);
+        // }
         updateFields.push("`rate`");
         values.push(rate);
         const query = `INSERT INTO \`cycles\`(${updateFields.join(
@@ -62,4 +71,4 @@ const deleteCycle = async (req, res) => {
     }
 };
 
-module.exports = getCycles,createCycles,deleteCycle;
+module.exports = { getCycles, createCycles, deleteCycle };

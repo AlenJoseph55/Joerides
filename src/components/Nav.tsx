@@ -21,13 +21,13 @@ export default function Nav() {
   return (
     <div className="bg-yellow-500 h-[10%] sm:h-[15%] w-screen flex justify-between items-center p-2 sm:p-7 text-black">
       <div className="flex items-center justify-between space-x-1 ">
-        <Link href={"/"}>
+        <Link href={"/user/dashboard"}>
           <h1 className=" sm:text-4xl text-xl">JOERIDES</h1>
         </Link>
       </div>
 
       <div className={`items-center space-x-20 hidden sm:flex pl-12`}>
-        <Link href="/">
+        <Link href="/user/dashboard">
           <h1>Home</h1>
         </Link>
         <Link href="/user/cycles">

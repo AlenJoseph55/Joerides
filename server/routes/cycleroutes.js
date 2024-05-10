@@ -1,8 +1,14 @@
 const express = require("express");
 const router = express.Router();
+const upload = require("../middlewares/imagehandler");
 
-const getCycles = require('../controllers/cycles')
+
+const {getCycles,createCycles,deleteCycle} = require('../controllers/cycles')
+
+const uploadMiddleware = upload.single("image");
 
 router.route("/").get(getCycles);
+router.route("/").post(uploadMiddleware,createCycles);
+router.route("/:id").delete(deleteCycle);
 
 module.exports = router;
