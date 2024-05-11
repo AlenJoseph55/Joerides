@@ -2,7 +2,7 @@
 import Layout from "../../../components/Layout"
 import Link from "next/link"
 import AddCycles from "./AddCycles"
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import {
     AlertDialog,
@@ -27,22 +27,54 @@ import {
     TableRow,
 } from "@/components/ui/table"
 import Nav2 from "@/components/Nav2"
+import axios from "axios";
 
 
 const initialState = { isAddFormVisible: false };
 
 export default function cycles() {
+    useEffect(() => {
+        getCycles();
+    }, []);
 
+    const [cycles, setCycles] = useState<Cycles[]>([]);
     const [isAddFormVisible, setIsAddFormVisible] = useState(initialState.isAddFormVisible);
     const toggleAddForm = () => {
         setIsAddFormVisible(!isAddFormVisible);
     };
-    const cycles = [
-        { id: 1, name: "Mountain Bike", image: "mountain_bike.jpg", rate: 25 },
-        { id: 2, name: "Road Bike", image: "road_bike.jpg", rate: 30 },
-        { id: 3, name: "Hybrid Bike", image: "hybrid_bike.jpg", rate: 20 },
-        { id: 4, name: "Electric Bike", image: "electric_bike.jpg", rate: 35 },
-    ];
+    // const cycles = [
+    //     { id: 1, name: "Mountain Bike", image: "mountain_bike.jpg", rate: 25 },
+    //     { id: 2, name: "Road Bike", image: "road_bike.jpg", rate: 30 },
+    //     { id: 3, name: "Hybrid Bike", image: "hybrid_bike.jpg", rate: 20 },
+    //     { id: 4, name: "Electric Bike", image: "electric_bike.jpg", rate: 35 },
+    // ];
+
+    const getCycles = async () => {
+        try {
+            const response = await axios.get(`http://localhost:3001/api/v1/cycles/`);
+            console.log(response.data);
+            setCycles(response.data);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+    const deleteCycles = async (id: number) => {
+        try {
+            const response = await axios.delete(`http://localhost:3001/api/v1/cycles/${id}`);
+            console.log(response.data);
+            setCycles(response.data);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+
+    interface Cycles {
+        id: number;
+        name: string;
+        rate: number;
+    }
+
 
     return (
         <div className="flex">
@@ -61,7 +93,9 @@ export default function cycles() {
                     </button>
                 </div>
 
-                {isAddFormVisible && <AddCycles />}
+                {isAddFormVisible && <AddCycles 
+                getCycles={getCycles} 
+                />}
                 <Table className='bg-slate-300 w-[77vw]'>
                     {/* <TableCaption>A list of your recent invoices.</TableCaption> */}
                     <TableHeader className='bg-gray-500'>
@@ -74,7 +108,7 @@ export default function cycles() {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {cycles.map((cycle) => (
+                    {cycles.length > 0 && cycles.map((cycle) => (
                             <TableRow key={cycle.id}>
                                 <TableCell className="font-medium">{cycle.id}</TableCell>
                                 <TableCell>{cycle.name}</TableCell>
@@ -85,12 +119,20 @@ export default function cycles() {
                                     </button>
                                 </TableCell>
                                 <TableCell className="text-right">
-                                    <button className='bg-red-400 hover:bg-red-700 text-white font-bold py-2 px-4 rounded'>
+                                    <button className='bg-red-400 hover:bg-red-700 text-white font-bold py-2 px-4 rounded' onClick={async () => await deleteCycles(cycle.id)}>
                                         Delete
                                     </button>
                                 </TableCell>
                             </TableRow>
                         ))}
+
+{cycles.length === 0 && (
+                            <TableRow>
+                                <TableCell colSpan={5} className="text-center text-gray-500 font-bold">
+                                    No cycles found.
+                                </TableCell>
+                            </TableRow>
+                        )}
                     </TableBody>
                     {/* <TableFooter>
                             <TableRow>

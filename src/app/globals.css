@@ -22,11 +22,11 @@
   }
 
 
-  #cycle{
+  /* #cycle{
     background-image: url("../assets/cycles.png");
     background-size: cover;
     background-position: center;
-  }
+  } */
 
   #cyclet{
     background-image: url("../assets/cycles.png");

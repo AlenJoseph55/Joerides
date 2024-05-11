@@ -18,5 +18,7 @@ app.use(cors(corsOptions));
 app.use('/', express.static("./assets/images"));
 app.use("/api/v1/cycles", require("./routes/cycleroutes"));
 app.use("/api/v1", require("./routes/authroutes"));
+app.use("/api/v1/rides", require("./routes/rideroutes"));
+
 
 app.listen(port, () => { console.log(`server is running on port ${port}`); });

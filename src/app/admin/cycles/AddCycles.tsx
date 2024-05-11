@@ -17,14 +17,14 @@ interface Response {
     message: string;
 }
 
-const AddCycles = () => {
+const AddCycles = ({getCycles}) => {
     const { register, handleSubmit } = useForm();
     const [response, setResponse] = useState<Response | null>(null);
     const [name, setName] = useState("");
     const [rate, setRate] = useState("");
     const [image, setImage] = useState("");
 
-    const onSubmit = async (e) => {
+    const onSubmit = async () => {
         try {
             // e.preventDefault();
             const formdata = new FormData();
@@ -37,7 +37,9 @@ const AddCycles = () => {
                 formdata
             );
             console.log("Success:", response.data);
+            getCycles();
             // Handle successful response (optional)
+            
         } catch (error) {
             console.error("Error:", error);
             if (error.response) {

@@ -18,7 +18,7 @@ export default function Nav2() {
             </div>
             <div className="flex items-center space-x-4">
                 {/* <PersonCircle size={25} type="button" className="text-white" /> */}
-                <Link href="/signin" className="text-white hover:underline">
+                <Link href="/" className="text-white hover:underline">
                     Sign Out
                 </Link>
             </div>

@@ -14,6 +14,21 @@ const getCycles = async (req, res) => {
     }
 }
 
+const getCycle = async (req, res) => {
+    try {
+        const [cycles] = await pool.execute("SELECT * FROM cycles WHERE `id` = ? ",
+        [req.params.id]
+        );
+        if (cycles.length === 0) {
+            return res.status(200).json({ message: "There are no cycles" });
+        }
+        return res.status(200).json(cycles);
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ message: "Internal Server Error" });
+    }
+}
+
 const createCycles = async (req, res) => {
     const {
         name,
@@ -71,4 +86,4 @@ const deleteCycle = async (req, res) => {
     }
 };
 
-module.exports = { getCycles, createCycles, deleteCycle };
+module.exports = { getCycles, createCycles, deleteCycle, getCycle };
