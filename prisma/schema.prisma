@@ -1,0 +1,36 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model cycles {
+  id    Int     @id @default(autoincrement())
+  name  String  @db.VarChar(255)
+  image String  @db.VarChar(255)
+  rate  Int
+  rides rides[]
+}
+
+model rides {
+  id       BigInt    @id @unique(map: "id") @default(autoincrement()) @db.UnsignedBigInt
+  date     DateTime? @db.Date
+  hours    Decimal?  @db.Decimal(5, 2)
+  cycle_id Int?
+  status   String    @default("active") @db.VarChar(255)
+  cycles   cycles?   @relation(fields: [cycle_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "rides_ibfk_1")
+
+  @@index([cycle_id], map: "cycle_id")
+}
+
+model users {
+  id       Int    @id @default(autoincrement())
+  name     String @db.VarChar(255)
+  email    String @db.VarChar(255)
+  password String @default("123456") @db.VarChar(255)
+  status   String @default("pending") @db.VarChar(255)
+  role     String @default("user") @db.VarChar(255)
+}

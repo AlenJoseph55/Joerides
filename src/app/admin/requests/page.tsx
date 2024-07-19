@@ -28,9 +28,9 @@ useEffect(() => {
 
     const getUsers = async () => {
         try {
-            const response = await axios.get(`http://localhost:3001/api/v1/requests`);
-            console.log(response.data.users[0]);
-            setUsers(response.data.users);
+            const response = await axios.get(`http://localhost:3000/api/admin/requests`);
+            console.log(response.data);
+            setUsers(response.data);
         } catch (error) {
             console.error(error);
         }
