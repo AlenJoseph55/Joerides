@@ -17,7 +17,7 @@ interface Response {
     message: string;
 }
 
-const AddCycles = ({getCycles}) => {
+const AddCycles = ({ getCycles }) => {
     const { register, handleSubmit } = useForm();
     const [response, setResponse] = useState<Response | null>(null);
     const [name, setName] = useState("");
@@ -39,7 +39,7 @@ const AddCycles = ({getCycles}) => {
             console.log("Success:", response.data);
             getCycles();
             // Handle successful response (optional)
-            
+
         } catch (error) {
             console.error("Error:", error);
             if (error.response) {

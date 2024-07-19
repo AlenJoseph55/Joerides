@@ -31,9 +31,9 @@ export default function admin() {
 
     const getUsers = async () => {
         try {
-            const response = await axios.get(`http://localhost:3000/api/admin/users`);
-            console.log(response.data);
-            setUsers(response.data);
+            const response = await axios.get(`http://localhost:3001/api/v1/users`);
+            console.log(response.data.users);
+            setUsers(response.data.users);
         } catch (error) {
             console.error(error);
         }

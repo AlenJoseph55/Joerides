@@ -65,6 +65,8 @@ export default function cycles() {
             setCycles(response.data);
         } catch (error) {
             console.error(error);
+        } finally{
+            getCycles();
         }
     }
 
