@@ -33,6 +33,7 @@ export default function login() {
         try {
             const login = await axios.post(`http://localhost:3001/api/v1/login`, data);
             console.log(login.data.role);
+            localStorage.setItem('user', JSON.stringify(login.data));
             setResponse(login.data);
             cookies.set("auth", login.data.role)
             if (login.data.role === "user")

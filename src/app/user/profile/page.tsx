@@ -1,4 +1,6 @@
+"use client"
 import Nav from "@/components/Nav"
+import { useEffect,useState } from "react"
 import {
     Card,
     CardDescription,
@@ -11,6 +13,15 @@ import Profilecard from "@/components/ProfileCard"
 
 
 export default function profile() {
+    const [user, setUser] = useState("");
+    useEffect(() => {
+        const userData = localStorage.getItem('user');
+        console.log(userData);
+        if (userData) {
+          setUser(JSON.parse(userData));
+        }
+    },[])
+
     return (
         <div>
             <div className="sm:h-[10vh]">
@@ -38,15 +49,15 @@ export default function profile() {
                                     <tbody>
                                         <tr>
                                             <td className="py-2 px-4 border-b border-gray-300">No:</td>
-                                            <td className="py-2 px-4 border-b border-gray-300">04</td>
+                                            <td className="py-2 px-4 border-b border-gray-300">{user.number}</td>
                                         </tr>
                                         <tr>
                                             <td className="py-2 px-4 border-b border-gray-300">Name:</td>
-                                            <td className="py-2 px-4 border-b border-gray-300">Alex</td>
+                                            <td className="py-2 px-4 border-b border-gray-300">{user.name}</td>
                                         </tr>
                                         <tr>
                                             <td className="py-2 px-4 border-b border-gray-300">Email:</td>
-                                            <td className="py-2 px-4 border-b border-gray-300">alex@gmail.com</td>
+                                            <td className="py-2 px-4 border-b border-gray-300">{user.email}</td>
                                         </tr>
                                         <tr className="text-left border-b border-gray-300">
                                             <th colSpan={2} className="font-bold py-4">

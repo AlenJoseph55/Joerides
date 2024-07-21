@@ -36,7 +36,7 @@ const signin = async (req, res) => {
                 // User authentication successful
                 if (user.role === "user") {
                     // Redirect user based on their role
-                    res.status(200).json({ message: "Login successful", redirect: '/', role: 'user' });
+                    res.status(200).json({ message: "Login successful", redirect: '/', role: 'user', email:user.email, name:user.name, number:user.id });
                 } else if(user.role === "admin") {
                     res.status(200).json({ message: "Admin Login successful", redirect: '/admin/requests', role: 'admin' });
                 }
