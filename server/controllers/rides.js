@@ -32,10 +32,9 @@ const createRide = async (req, res) => {
     try {
         const [rides] = await pool.execute("SELECT * FROM rides WHERE `status` = ?", ["active"]);
         if (rides.length === 0) {
-        
         const { date, hours, cycle_id, status, rate } = req.body;
         // console.log(req.body);
-        const [cycles] = await pool.execute("SELECT * FROM cycles WHERE `id` = ? ",cycle_id);
+        const [cycles] = await pool.execute("SELECT * FROM cycles WHERE `id` = ?",[cycle_id]);
         console.log(cycles)
         const updateFields = [];
         const values = [];

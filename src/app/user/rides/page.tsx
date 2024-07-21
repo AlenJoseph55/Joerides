@@ -101,7 +101,7 @@ export default function rides() {
                                                 </AlertDialogHeader>
                                                 <AlertDialogFooter>
                                                     <AlertDialogCancel>Cancel</AlertDialogCancel>
-                                                    <AlertDialogAction onClick={async () => { await cancelRide(id); getactiveRides(); }}>Continue</AlertDialogAction>
+                                                    <AlertDialogAction onClick={async () => { await cancelRide(id); getactiveRides(); getpastRides(); }}>Continue</AlertDialogAction>
                                                 </AlertDialogFooter>
                                             </AlertDialogContent>
                                         </AlertDialog>

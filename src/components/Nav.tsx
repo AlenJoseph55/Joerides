@@ -13,7 +13,7 @@ export default function Nav() {
     { name: "Past Rides", href: "/user/pastrides" },
     { name: "Current Ride", href: "/user/currentride" },
     { name: "Payments", href: "/user/payments" },
-    { name: "Logout", href: "/user/logout" },
+    { name: "Logout", href: "/" },
 
   ];
   return (

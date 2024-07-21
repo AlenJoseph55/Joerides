@@ -30,14 +30,14 @@ export default function book() {
 
     }
     const currentDate = new Date();
-    const [hour, sethour] = useState(0.0);
+    const [hour, sethour] = useState(0.5);
     const [rate, setrate] = useState(0)
     const handleAdd = (rate) => {
         sethour((prevValue) => prevValue + 0.5);
         setrate((prevRate) => prevRate + rate / 2);
     };
     const handleSub = (rate) => {
-        sethour((prevValue) => Math.max(prevValue - 0.5, 0));
+        sethour((prevValue) => Math.max(prevValue - 0.5, 0.5));
         setrate((prevRate) => Math.max(prevRate - rate / 2, 0));
     };
     const { id } = useParams();
@@ -68,7 +68,7 @@ export default function book() {
 
         } catch (error) {
             console.log(error);
-            setResponse(error.data.message);
+            setResponse(error.response.data.message);
 
         }
     }
@@ -79,7 +79,7 @@ export default function book() {
             <Nav />
             <div className="flex flex-col sm:flex-row items-center justify-evenly sm:justify-start sm:ml-12 h-[80%] w-screen">
                 <div className="flex items-center sm:items-center  sm:justify-center justify-center w-1/2 h-72 m-2 sm:h-[90%] sm:mr-20">
-                    <img src={cycle.image} alt="Home" />
+                    <img src={cycle.image} alt="Cycle" className="h-96" />
 
                 </div>
                 <div className="flex flex-col items-start justify-center text-xs sm:text-lg">

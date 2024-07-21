@@ -105,7 +105,6 @@ export default function cycles() {
                             <TableHead className="w-[100px]">No</TableHead>
                             <TableHead>Name</TableHead>
                             <TableHead>rate</TableHead>
-                            <TableHead className="text-right">Image</TableHead>
                             <TableHead className="text-right">Action</TableHead>
                         </TableRow>
                     </TableHeader>
@@ -115,11 +114,6 @@ export default function cycles() {
                                 <TableCell className="font-medium">{cycle.id}</TableCell>
                                 <TableCell>{cycle.name}</TableCell>
                                 <TableCell>{cycle.rate}</TableCell>
-                                <TableCell className="text-right">
-                                    <button className='bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>
-                                        View
-                                    </button>
-                                </TableCell>
                                 <TableCell className="text-right">
                                     <button className='bg-red-400 hover:bg-red-700 text-white font-bold py-2 px-4 rounded' onClick={async () => await deleteCycles(cycle.id)}>
                                         Delete

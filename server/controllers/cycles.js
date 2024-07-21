@@ -7,6 +7,7 @@ const getCycles = async (req, res) => {
         if (cycles.length === 0) {
             return res.status(200).json({ message: "There are no cycles" });
         }
+        console.log(cycles);
         return res.status(200).json(cycles);
     } catch (error) {
         console.log(error);
