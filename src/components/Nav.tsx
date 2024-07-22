@@ -10,8 +10,8 @@ export default function Nav() {
   const [iconRotation, setIconRotation] = useState(0);
   const links = [
     { name: "Profile", href: '/user/profile' },
-    { name: "Past Rides", href: "/user/pastrides" },
-    { name: "Current Ride", href: "/user/currentride" },
+    { name: "Past Rides", href: "/user/rides" },
+    { name: "Current Ride", href: "/user/rides" },
     { name: "Payments", href: "/user/payments" },
     { name: "Logout", href: "/" },
 

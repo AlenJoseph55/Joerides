@@ -31,7 +31,7 @@ export default function rides() {
     const getactiveRides = async () => {
         try {
             const response = await axios.get(`http://localhost:3001/api/v1/rides/active`);
-            console.log(response.data);
+            // console.log(response.data);
             setActiverides(response.data);
         } catch (error) {
             console.error(error);
@@ -40,7 +40,7 @@ export default function rides() {
     const getpastRides = async () => {
         try {
             const response = await axios.get(`http://localhost:3001/api/v1/rides/past`);
-            console.log(response.data);
+            // console.log(response.data);
             setPastrides(response.data);
         } catch (error) {
             console.error(error);

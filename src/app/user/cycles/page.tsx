@@ -42,9 +42,9 @@ export default function cycles() {
     const getCycles = async () => {
         try {
             const response = await axios.get(`http://localhost:3001/api/v1/cycles/`);
-            console.log(response.data);
+            // console.log(response.data);
             setCycles(response.data);
-            console.log(cycles)
+            // console.log(cycles)
             setResponse(response.data.message)
         } catch (error) {
             console.error(error);
