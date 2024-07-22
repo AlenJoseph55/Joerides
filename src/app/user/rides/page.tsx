@@ -66,7 +66,7 @@ export default function rides() {
                 <div>
                     <h1 className='p-5 text-3xl'>Active Rides</h1>
                     <div className=' flex flex-col items-center justify-center'>
-                        {activerides.length > 0 ?( activerides.map(({ id, image, date, hours, rate }) => (
+                        {activerides.length > 0 ? (activerides.map(({ id, image, date, hours, rate }) => (
                             <Card className='flex flex-col justify-between items-center rounded-xl mt-2 w-[95%]' key={id}>
                                 <div className='w-full flex items-center justify-around'>
                                     <div className='w-1/5'></div>
@@ -108,7 +108,7 @@ export default function rides() {
                                     </CardFooter>
                                 </div>
                             </Card>
-                        ))):(
+                        ))) : (
                             <div>
                                 <h1>No rides are active</h1>
                             </div>
@@ -119,22 +119,27 @@ export default function rides() {
                 <div>
                     <h1 className='p-5 text-3xl'>Past Rides</h1>
                     <div className='grid grid-cols-4 gap-14'>
-                        {pastrides.length > 0 ?( pastrides.map(({ id, image, date }) => (
-                            <Card className='rounded-xl m-4 mt-2 w-20%' key={id}>
-                                <img src={image} alt="" className="p-2 rounded-lg h-[10rem] sm:h-[18rem] md:h-[10rem] w-full" />
-
-                                <CardFooter className='border-t h-[20%] flex items-center justify-center p-0'>
-                                    {date}
-                                </CardFooter>
-                            </Card>
-                        ))
-                    ):(
-                        <div className='flex items-center justify-center w-screen'>
-                            <h1>There are no past rides</h1>
-                        </div>
-                    )}
+                        {pastrides.length > 0 ? (
+                            pastrides.map(({ id, image, date, hours, rate }) => (
+                                <Card className='rounded-xl m-4 mt-2 w-20%' key={id}>
+                                    <img src={image} alt="" className="p-2 rounded-lg h-[10rem] sm:h-[18rem] md:h-[10rem] w-full" />
+                                    <CardFooter className='border-t h-[30%] flex items-center justify-start pl-3 pb-0'>
+                                        <div className='text-left '>
+                                            <p><span className='text-black font-bold'>Date:</span> {date}</p>
+                                            <p><span className='text-black font-bold'>Hours:</span> {hours}</p>
+                                            <p><span className='text-black font-bold'>Amount:</span> {`Rs ${rate}`}</p>
+                                        </div>
+                                    </CardFooter>
+                                </Card>
+                            ))
+                        ) : (
+                            <div className='flex items-center justify-center w-screen'>
+                                <h1>There are no past rides</h1>
+                            </div>
+                        )}
                     </div>
                 </div>
+
             </div>
         </div>
     )
