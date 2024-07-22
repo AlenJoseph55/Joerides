@@ -30,14 +30,14 @@ export default function book() {
 
     }
     const currentDate = new Date();
-    const [hour, sethour] = useState(0.5);
+    const [hour, sethour] = useState(0);
     const [rate, setrate] = useState(0)
     const handleAdd = (rate) => {
         sethour((prevValue) => prevValue + 0.5);
         setrate((prevRate) => prevRate + rate / 2);
     };
     const handleSub = (rate) => {
-        sethour((prevValue) => Math.max(prevValue - 0.5, 0.5));
+        sethour((prevValue) => Math.max(prevValue - 0.5, 0));
         setrate((prevRate) => Math.max(prevRate - rate / 2, 0));
     };
     const { id } = useParams();
@@ -112,14 +112,13 @@ export default function book() {
                         </div>
                         <Link
                             href={isSuccessful ? '/user/rides' : '#'} // Conditional link based on isSuccessful state
-                            className="h-[50px] w-[125%] sm:w-[100%] lg:w-[150%] text-black flex justify-center bg-yellow-500 rounded-3xl text-center items-center text-xs sm:text-lg mt-7"
                             onClick={async () => {
                                 if (!isSuccessful) {
                                     await createRide();
                                 }
                             }}
                         >
-                            <div><p className="p-2">BOOK NOW</p></div>
+<button className="h-[50px] w-[125%] sm:w-[100%] lg:w-[150%] text-black flex justify-center bg-yellow-500 rounded-3xl text-center items-center text-xs sm:text-lg mt-7"><div><p className="p-2">BOOK NOW</p></div></button>
                         </Link>
                     </div>
                 </div>

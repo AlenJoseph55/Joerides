@@ -35,7 +35,7 @@ const createRide = async (req, res) => {
         const { date, hours, cycle_id, status, rate } = req.body;
         // console.log(req.body);
         const [cycles] = await pool.execute("SELECT * FROM cycles WHERE `id` = ?",[cycle_id]);
-        console.log(cycles)
+        // console.log(cycles)
         const updateFields = [];
         const values = [];
         updateFields.push("`date`");
